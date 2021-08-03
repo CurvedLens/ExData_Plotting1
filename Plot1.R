@@ -1,0 +1,7 @@
+library(tidyverse)
+library(lubridate)
+df <- read_delim("household_power_consumption.txt", ";")
+df2 <- subset(df, Date ==  "1/2/2007" | Date == "2/2/2007")
+df2$Datetime <- paste(df2$Date, df2$Time)
+df2$Datetime <- dmy_hms(df2$Datetime)
+hist(df2$Global_active_power, col = "red", xlab = "Globlal Active Power (kilowatts)", main = "Global Active Power")
